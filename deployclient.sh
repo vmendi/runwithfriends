@@ -1,1 +1,1 @@
-s3cmd put --acl-public --recursive ./ s3://runwithfriendsco/
+s3cmd put --acl-public --recursive ./client/ s3://www.runwithfriends.co/
