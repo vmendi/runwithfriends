@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+        <title>
+        </title>
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+        <link rel="stylesheet" href="my.css" />
+        <style>
+            /* App custom styles */
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js">
+        </script>
+        <script src="my.js">
+        </script>
+    </head>
+    <body>
+        <!-- Home -->
+        <div data-role="page" id="HomePage">
+            <div data-role="content">
+            <center>
+                <img src="LoginFacebook.png" alt="image" onClick="onFBLoginClick();"  />
+            </center>
+            </div>
+        </div>
+
+        <!-- Challenge ReceivedPage -->
+        <div id="ChallengeReceivedPage" data-role="page">
+          <div data-role="header">
+            <h1>New Challenge!</h1>
+          </div>
+          <div data-role="content">
+            <center>
+                <p>You have received a new challenge from a friend</p>
+                <a href="#TimelineFake" data-theme="b" class="ui-btn-right" data-transition="flip">Accept Challenge!</a>
+            </center>
+          </div>
+        </div>
+
+        <script>
+            function onFBLoginClick() {
+                $.mobile.changePage("#ChallengeReceivedPage");
+            }
+        </script>
+    </body>
+</html>
