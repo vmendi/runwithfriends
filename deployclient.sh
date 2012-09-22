@@ -1,0 +1,1 @@
+s3cmd put --acl-public --recursive ./ s3://runwithfriendsco/
