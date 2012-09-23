@@ -28,8 +28,6 @@ window.fbAsyncInit = function() {
 };
 
 function handleReponseChange(response) {
-  document.body.className = response.authResponse ? 'connected' : 'not_connected';
-
   if (response.authResponse) {
     FB.api('/me', function(response) {
       user = response;
