@@ -1,112 +1,3 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
-        <title>
-        </title>
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
-        <style>
-            /* App custom styles */
-        </style>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js">
-        </script>
-        <script src="canvas.js">
-        </script>
-    </head>
-    <body>
-        <div id="fb-root"></div>
-    
-        <!-- Home -->
-        <div data-role="page" id="HomePage">
-            <div data-role="content">
-            <center>
-                <img src="LoginFacebook.png" alt="image" onClick="onFBLoginClick();"  /><br/>
-                <span id="CurrentCoords"></span><br/>
-                <span id="CurrentSpeed"></span>
-            </center>
-            </div>
-        </div>
-
-        <!-- Challenge ReceivedPage -->
-        <div id="ChallengeReceivedPage" data-role="page">
-          <div data-role="header">
-            <h1>New Challenge!</h1>
-          </div>
-          <div data-role="content">
-            <center>
-                <div id="userInfo"></div><br/>
-                <p>You have received a new challenge from</p>
-                <div id="randomFriendInfo"></div><br/>
-                <a href="#ChallengeTimeLine" data-theme="b" class="ui-btn-right" data-transition="flip">Accept Challenge!</a>
-            </center>
-          </div>
-        </div>
-
-        <!-- Challenge TimeLine -->
-        <div id="ChallengeTimeLine" data-role="page">
-          <div data-role="header">
-            <h1>Challenging!</h1>
-          </div>
-          <div data-role="content">
-            <center>
-                <p>You are challenging your friend!</p>
-                <canvas id="myCanvas" width="800" height="200" style="border:1px solid #000000;"> </canvas>
-            </center>
-          </div>
-        </div>
-
-        <script>
-            function onFBLoginClick() {
-                FB.login(null, {scope: 'email'});
-            }
-
-            function onFacebookInitialized() {
-                $.mobile.changePage("#ChallengeReceivedPage");
-            }
-
-            $(document).ready(function() {
-                $(document).bind('pagechange', function(event, data) {
-                    var id = data.toPage.attr("id");
-                    if (id == "ChallengeReceivedPage") {
-
-                        // Show the user
-                        $("#userInfo").html('<img src="https://graph.facebook.com/' + user.id + '/picture">' + user.name);
-
-                        var friend = null;
-
-                        // Pick our favorite judge
-                        for(var c=0; c < GlobalFriends.length; c++) {
-                            if (GlobalFriends[c].id === "507223094") {
-                                friend = GlobalFriends[c];
-                                break;
-                            }
-                        }
-
-                        // Pick a random friend, show him/her
-                        if (friend == null)
-                            GlobalFriends[Math.round(Math.random()*GlobalFriends.length)-1];
-
-                        /*
-                        $("#randomFriendInfo").html('<img src="https://graph.facebook.com/' + friend.id + '/picture">' + friend.name);
-                        */
-
-                        // Nah, always show our favorite judge
-                        $("#randomFriendInfo").html('<img src="https://graph.facebook.com/507223094/picture">' + "Daniel Seeff");
-
-                    }
-                    if(data.toPage.attr("id")=="ChallengeTimeLine"){
-                        iniciateCanvas();
-                    }
-                });
-            });
-        </script>
-        <script src="auth.js"></script>
-    </body>
-=======
 <!DOCTYPE html>
 <html>
     <head>
@@ -172,38 +63,6 @@
                 FB.login(null, {scope: 'email'});
             }
 
-            if (navigator.geolocation) {
-              navigator.geolocation.watchPosition(
-                displayPosition, 
-                displayError,
-                { enableHighAccuracy: true, timeout: 10 * 1000 * 1000, maximumAge: 0 }
-              );
-            }
-            else {
-              alert("Geolocation is not supported by this browser");
-            }
-
-            function displayPosition(position) {
-              var currentCoordsElement = $("#CurrentCoords");
-              var currentSpeedElement = $("#CurrentSpeed");
-
-              if (currentCoordsElement) {
-                currentCoordsElement.text("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude);
-              }
-
-              if (currentSpeedElement) {
-                currentSpeedElement.text("Speed: " + (position.coords.speed? position.coords.speed : "0"))
-              }
-            }
-            function displayError(error) {
-              var errors = { 
-                1: 'Permission denied',
-                2: 'Position unavailable',
-                3: 'Request timeout'
-              };
-              alert("Error: " + errors[error.code]);
-            }
-
             function onFacebookInitialized() {
                 $.mobile.changePage("#ChallengeReceivedPage");
             }
@@ -216,10 +75,27 @@
                         // Show the user
                         $("#userInfo").html('<img src="https://graph.facebook.com/' + user.id + '/picture">' + user.name);
 
+                        var friend = null;
+
+                        // Pick our favorite judge
+                        for(var c=0; c < GlobalFriends.length; c++) {
+                            if (GlobalFriends[c].id === "507223094") {
+                                friend = GlobalFriends[c];
+                                break;
+                            }
+                        }
+
                         // Pick a random friend, show him/her
-                        var randomFriendIndex = Math.round(Math.random()*GlobalFriends.length)-1;
-                        var friend = GlobalFriends[randomFriendIndex]
+                        if (friend == null)
+                            GlobalFriends[Math.round(Math.random()*GlobalFriends.length)-1];
+
+                        /*
                         $("#randomFriendInfo").html('<img src="https://graph.facebook.com/' + friend.id + '/picture">' + friend.name);
+                        */
+
+                        // Nah, always show our favorite judge
+                        $("#randomFriendInfo").html('<img src="https://graph.facebook.com/507223094/picture">' + "Daniel Seeff");
+
                     }
                     if(data.toPage.attr("id")=="ChallengeTimeLine"){
                         iniciateCanvas();
@@ -229,5 +105,4 @@
         </script>
         <script src="auth.js"></script>
     </body>
->>>>>>> segunda
 </html>
