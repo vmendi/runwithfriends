@@ -6,13 +6,14 @@
         <title>
         </title>
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
-        <link rel="stylesheet" href="my.css" />
         <style>
             /* App custom styles */
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
         </script>
         <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js">
+        </script>
+        <script src="canvas.js">
         </script>
     </head>
     <body>
@@ -39,7 +40,20 @@
                 <div id="userInfo"></div><br/>
                 <p>You have received a new challenge from</p>
                 <div id="randomFriendInfo"></div><br/>
-                <a href="#TimelineFake" data-theme="b" class="ui-btn-right" data-transition="flip">Accept Challenge!</a>
+                <a href="#ChallengeTimeLine" data-theme="b" class="ui-btn-right" data-transition="flip">Accept Challenge!</a>
+            </center>
+          </div>
+        </div>
+
+        <!-- Challenge TimeLine -->
+        <div id="ChallengeTimeLine" data-role="page">
+          <div data-role="header">
+            <h1>Challenging!</h1>
+          </div>
+          <div data-role="content">
+            <center>
+                <p>You are challenging your friend!</p>
+                <canvas id="myCanvas" width="800" height="200" style="border:1px solid #000000;"> </canvas>
             </center>
           </div>
         </div>
@@ -97,6 +111,9 @@
                         var randomFriendIndex = Math.round(Math.random()*GlobalFriends.length)-1;
                         var friend = GlobalFriends[randomFriendIndex]
                         $("#randomFriendInfo").html('<img src="https://graph.facebook.com/' + friend.id + '/picture">' + friend.name);
+                    }
+                    if(data.toPage.attr("id")=="ChallengeTimeLine"){
+                        iniciateCanvas();
                     }
                 });
             });
