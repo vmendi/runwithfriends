@@ -2,11 +2,11 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
         <title>
         </title>
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
-        <link rel="stylesheet" href="my.css" />
+        
         <style>
             /* App custom styles */
         </style>
@@ -14,7 +14,8 @@
         </script>
         <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js">
         </script>
-        <script src="my.js">
+       
+         <script src="canvas.js">
         </script>
     </head>
     <body>
@@ -35,7 +36,23 @@
           <div data-role="content">
             <center>
                 <p>You have received a new challenge from a friend</p>
-                <a href="#TimelineFake" data-theme="b" class="ui-btn-right" data-transition="flip">Accept Challenge!</a>
+                <a href="#ChallengeTimeLine" data-theme="b" class="ui-btn-right" data-transition="flip">Accept Challenge!</a>
+            </center>
+          </div>
+        </div>
+		
+		<!-- Challenge TimeLine -->
+        <div id="ChallengeTimeLine" data-role="page">
+          <div data-role="header">
+            <h1>Challenging!</h1>
+          </div>
+          <div data-role="content">
+            <center>
+                <p>You are challenging your friend!</p>
+
+
+				<canvas id="myCanvas" width="800" height="200" style="border:1px solid #000000;"> </canvas>
+               
             </center>
           </div>
         </div>
@@ -44,6 +61,23 @@
             function onFBLoginClick() {
                 $.mobile.changePage("#ChallengeReceivedPage");
             }
+
+            function prueba(){
+                alert("hola");
+            }
+
+            $(document).ready(function(){
+                $(document).bind("pagechange", function(event, data){
+                    console.log(data.toPage);
+                    if(data.toPage.attr("id")=="ChallengeTimeLine"){
+                        iniciateCanvas();
+                    }
+                });
+
+            })
+
+
+
         </script>
     </body>
 </html>
