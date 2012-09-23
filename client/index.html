@@ -14,8 +14,7 @@
     <body>
         <div id="fb-root"></div>
     
-        <!-- Home -->
-        <div data-role="page" id="HomePage">
+        <div data-role="page" id="LoginPage">
             <div data-role="content">
             <center>
                 <img src="LoginFacebook.png" alt="image" onClick="onFBLoginClick();"  /><br/>
@@ -25,27 +24,28 @@
             </div>
         </div>
 
+        <div data-role="page" id="HomePage">
+            <div data-role="content">
+            <center>
+                <div style="position:relative; width:320px;height:460px;">
+                    <img style="width: 320px; height: 460px" src="./images/home_bg.png">
+
+                    <div onClick="$.mobile.changePage('#ChallengeReceivedPage');" style='position:absolute;top:0px;left:240px;width:160px;height:160px;'></div>
+
+                </div>                
+            </center>
+            </div>
+        </div>
+
         <!-- Challenge ReceivedPage -->
         <div id="ChallengeReceivedPage" data-role="page">
-        <!--
-          <div data-role="navbar" class="nav-bar" data-iconpos="top">
-                <ul>
-                    <li><a href="#HomePage" class="">Home</a></li>
-                    <li><a href="#BonusPage" class="">Bonus</a></li>
-                    <li><a href="#RanksPage" class="">Ranks</a></li>
-                    <li><a href="#ChallengeReceivedPage" class="ui-btn-active ui-state-persist" data-icon="race-page"></a></li>                    
-                </ul>
-            </div>
-        -->
           <div data-role="content">
             <center>
                 <div style="position:relative; width:320px;height:460px;">
-                    <div style="margin:-4px;padding:0px;">
-                        <img style="width: 320px; height: 80px" src="./images/nav_race.png">
-                    </div>
-                    <div style="">
-                        <img style="width: 320px; height: 381px" src="./images/race_bg.png">
-                    </div>
+                    <img style="width: 320px; height: 460px" src="./images/race_bg.png">
+
+                    <div onClick="$.mobile.changePage('#HomePage');" style='position:absolute;top:0px;left:0px;width:160px;height:160px;'></div>
+                    
                     <div id="randomFriendPicture" style='position:absolute;top:178px;left:23px;'></div>
                     <div id="randomFriendName" style='position:absolute;top:173px;left:66px;' class="my-big-font"></div>
                     <div onClick="$.mobile.changePage('#ChallengeTimeLine');" style='position:absolute;top:228px;left:116px;width:94px;height:46px;'></div>
@@ -56,13 +56,15 @@
 
         <!-- Challenge TimeLine -->
         <div id="ChallengeTimeLine" data-role="page">
-          <div data-role="header">
-            <h1>Challenging!</h1>
-          </div>
           <div data-role="content">
             <center>
-                <p>You are challenging your friend!</p>
-                <canvas id="myCanvas" width="320" height="380" style="border:1px solid #000000;"> </canvas>
+                <div style="position:relative; width:320px;height:460px;">
+                    <img style="width: 320px; height: 460px" src="./images/racing_bg.png">
+
+                    <div onClick="$.mobile.changePage('#HomePage');" style='position:absolute;top:0px;left:0px;width:160px;height:160px;'></div>
+
+                    <canvas id="myCanvas" width="320" height="380" style="border:1px solid #000000;"></canvas>
+                </div>
             </center>
           </div>
         </div>
