@@ -3,5 +3,15 @@
 }
 
 .my-big-font { 
+	font-size:large;color:#FFFFFF;text-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+	font-weight: bold;
+	font-family: Helvetica, Arial, sans-serif;
+	text-transform:uppercase;
+}
+
+.my-xbig-font { 
 	font-size:x-large;color:#FFFFFF;text-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+	font-weight: bold;
+	font-family: Helvetica, Arial, sans-serif;
+	text-transform:uppercase;
 }
