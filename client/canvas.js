@@ -18,7 +18,7 @@ function iniciateCanvas(){
   //$('#progress02').clearQueue();
  
   $('#progress01').animate({
-    left: '+=220',
+    left: '+=210',
   }, 19000, function() {
     resetCanvas();
     $.mobile.changePage('#ResultsPage', {transition:'none'});
@@ -28,9 +28,9 @@ function iniciateCanvas(){
 
   $('#progress02').animate({
     
-   left: '+=220',
+   left: '+=210',
     }, 20000, function() {
-     
+
     
   });
 
