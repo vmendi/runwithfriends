@@ -81,6 +81,19 @@
           </div>
         </div>
 
+        <div data-role="page" id="ResultsPage">
+            <div data-role="content">
+            <center>
+                <div style="position:relative; width:320px;height:460px;">
+                    <img style="width: 320px; height: 460px" src="./images/results_bg.png">
+
+                    <div onClick="$.mobile.changePage('#HomePage', {transition:'none'});" style='position:absolute;top:0px;left:0px;width:320px;height:460px;'></div>
+
+                </div>                
+            </center>
+            </div>
+        </div>
+
         <script>
             function onFBLoginClick() {
                 FB.login(null, {scope: 'email'});

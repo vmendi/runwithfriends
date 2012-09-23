@@ -18,7 +18,7 @@ function iniciateCanvas(){
   $('#progress01').animate({
     left: '+=220',
   }, 19000, function() {
-    
+    $.mobile.changePage('#ResultsPage', {transition:'none'});
     
   });
 
