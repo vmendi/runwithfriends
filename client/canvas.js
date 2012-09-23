@@ -9,12 +9,14 @@
       })();
 
      
+
+
       
-function animate(myRectangle, canvas, context, startTime) {
+function animate(myRectangle, canvas, context, startTime, imageObj1, imgx1, imgy1, imgwidth1, imgheight1, imageObj2, imgx2, imgy2, imgwidth2, imgheight2) {
   // update
   var time = (new Date()).getTime() - startTime;
 
-  var linearSpeed = 100;
+  var linearSpeed = 10;
   // pixels / second
   var newX = linearSpeed * time / 1000;
 
@@ -25,7 +27,17 @@ function animate(myRectangle, canvas, context, startTime) {
   // clear
   context.clearRect(0, 0, canvas.width, canvas.height);
 
+
+
+  //DRAW THINGS
+  drawLine(context);
   drawRectangle(myRectangle, context);
+  //drawImage(context, imageObj1, imgx1, imgy1, imgwidth1, imgheight1);
+  //drawImage(context, imageObj2, imgx2, imgy2, imgwidth2, imgheight2);
+
+
+
+
 
   // request new frame
   requestAnimFrame(function() {
@@ -53,13 +65,25 @@ function drawRectangle(myRectangle, context) {
 //DRAW LINE
 function drawLine(context){
   
-  context.moveTo(0,20);
+  context.moveTo(50,100);
   var lineStart = 480;
-  var lineEnd = 20;
+  var lineEnd = 100;
   context.lineTo(lineStart,lineEnd);
   context.stroke();
   
 }
+
+
+
+
+
+
+
+//IMAGES
+function drawImage(context, imageObj, x, y, width, height){
+  context.drawImage(imageObj, x, y, width, height);
+}
+
 
 
 
@@ -68,6 +92,7 @@ function drawLine(context){
 function iniciateCanvas(){
   var canvas = document.getElementById('myCanvas');
   var context = canvas.getContext('2d');
+  
         
   var myRectangle = {
     x: 0,
@@ -77,14 +102,42 @@ function iniciateCanvas(){
     borderWidth: 2
   };
 
+
+  var imageObj1 = new Image();
+  var imageObj2 = new Image();
+  imageObj1.src = 'darth-vader.jpg';
+  
+  //imageObj2.src = 'http://www.html5canvastutorials.com/demos/assets/darth-vader.jpg';
+  var imgx1= 0;
+  var imgx2= 0;
+  var imgy1= 40;
+  var imgy2= 100;
+
+
+
+  //var valuesImage= resizeImage(imageObj1.width,imageObj1.height);
+  //var imgwidth1=valuesImage[0];
+  //var imgheight1=valuesImage[1];
+
+  var imgwidth1= 50;
+  var imgheight1= 50;
+
+  var imgwidth2= 50;
+  var imgheight2= 50;
+  
+
+ // drawImage(context, imageObj1, imgx1, imgy1, imgwidth1, imgheight1);
+ // drawImage(context, imageObj2, imgx2, imgy2, imgwidth2, imgheight2);
+  
   drawLine(context);
   drawRectangle(myRectangle, context);
 
 
   // wait one second before starting animation
+  
   setTimeout(function() {
     var startTime = (new Date()).getTime();
-    animate(myRectangle, canvas, context, startTime);
+    animate(myRectangle, canvas, context, startTime, context, imageObj1, imgx1, imgy1, imgwidth1, imgheight1, context, imageObj2, imgx2, imgy2, imgwidth2, imgheight2);
   }, 1000);
 
 };
