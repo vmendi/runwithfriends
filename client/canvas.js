@@ -1,14 +1,16 @@
+
+function resetCanvas(){
+
+  $('#progress01').css("left",60);
+  $('#progress02').css("left",60);
+
+
+}
+
+
+
 function iniciateCanvas(){
  
-  $('#progress01').stop();
-  $('#progress01').clearQueue();
-   $("#progress01").offset({ left: "60px"});
-
-
-
-
-  $(".layer2").position("left : '60px' ");
-
 
   
     
@@ -18,6 +20,7 @@ function iniciateCanvas(){
   $('#progress01').animate({
     left: '+=220',
   }, 19000, function() {
+    resetCanvas();
     $.mobile.changePage('#ResultsPage', {transition:'none'});
     
   });
@@ -27,6 +30,7 @@ function iniciateCanvas(){
     
    left: '+=220',
     }, 20000, function() {
+     
     
   });
 
