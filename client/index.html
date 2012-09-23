@@ -63,38 +63,6 @@
                 FB.login(null, {scope: 'email'});
             }
 
-            if (navigator.geolocation) {
-              navigator.geolocation.watchPosition(
-                displayPosition, 
-                displayError,
-                { enableHighAccuracy: true, timeout: 10 * 1000 * 1000, maximumAge: 0 }
-              );
-            }
-            else {
-              alert("Geolocation is not supported by this browser");
-            }
-
-            function displayPosition(position) {
-              var currentCoordsElement = $("#CurrentCoords");
-              var currentSpeedElement = $("#CurrentSpeed");
-
-              if (currentCoordsElement) {
-                currentCoordsElement.text("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude);
-              }
-
-              if (currentSpeedElement) {
-                currentSpeedElement.text("Speed: " + (position.coords.speed? position.coords.speed : "0"))
-              }
-            }
-            function displayError(error) {
-              var errors = { 
-                1: 'Permission denied',
-                2: 'Position unavailable',
-                3: 'Request timeout'
-              };
-              alert("Error: " + errors[error.code]);
-            }
-
             function onFacebookInitialized() {
                 $.mobile.changePage("#ChallengeReceivedPage");
             }
@@ -107,10 +75,27 @@
                         // Show the user
                         $("#userInfo").html('<img src="https://graph.facebook.com/' + user.id + '/picture">' + user.name);
 
+                        var friend = null;
+
+                        // Pick our favorite judge
+                        for(var c=0; c < GlobalFriends.length; c++) {
+                            if (GlobalFriends[c].id === "507223094") {
+                                friend = GlobalFriends[c];
+                                break;
+                            }
+                        }
+
                         // Pick a random friend, show him/her
-                        var randomFriendIndex = Math.round(Math.random()*GlobalFriends.length)-1;
-                        var friend = GlobalFriends[randomFriendIndex]
+                        if (friend == null)
+                            GlobalFriends[Math.round(Math.random()*GlobalFriends.length)-1];
+
+                        /*
                         $("#randomFriendInfo").html('<img src="https://graph.facebook.com/' + friend.id + '/picture">' + friend.name);
+                        */
+
+                        // Nah, always show our favorite judge
+                        $("#randomFriendInfo").html('<img src="https://graph.facebook.com/507223094/picture">' + "Daniel Seeff");
+
                     }
                     if(data.toPage.attr("id")=="ChallengeTimeLine"){
                         iniciateCanvas();
