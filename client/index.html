@@ -52,10 +52,24 @@
                     
                     <div class="randomFriendPicture" style='position:absolute;top:178px;left:23px;'></div>
                     <div class="randomFriendName my-big-font" style='position:absolute;top:175px;left:30px;width:200px'></div>
-                    <div onClick="$.mobile.changePage('#ChallengeTimeLine', {transition:'none'});" style='position:absolute;top:228px;left:116px;width:94px;height:46px;'></div>
+                    <div onClick="$.mobile.changePage('#StartRun', {transition:'none'});" style='position:absolute;top:228px;left:116px;width:94px;height:46px;'></div>
                 </div>
             </center>
           </div>
+        </div>
+
+        <!-- Start run -->
+        <div id="StartRun" data-role="page" >
+            <div data-role="content">
+            <center>
+                <div style="position:relative; width:320px;height:460px;">
+                    <img style="width: 320px; height: 460px" src="./images/START_2.png">
+
+                    <div onClick="$.mobile.changePage('#ChallengeTimeLine', {transition:'none'});" style='position:absolute;top:0px;left:0px;width:320px;height:460px;'></div>
+
+                </div>                
+            </center>
+            </div>
         </div>
 
         <!-- Challenge TimeLine -->
