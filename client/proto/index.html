@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="stylesheet.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+        <script src="canvas.js"></script>
+    </head>
+    <body>
+        <div id="fb-root"></div>
+    
+        <div data-role="page" id="LoginPage" data-transition="none">
+            <div data-role="content">
+            <center>
+                <div style="position:relative; width:320px;height:460px;">
+                    <img style="width: 320px; height: 460px" src="./images/splash_bg.png">
+
+                    <div onClick="onFBLoginClick()" style='position:absolute;top:0px;left:0px;width:320px;height:460px;'></div>
+
+                </div>                
+            </center>
+            </div>
+        </div>
+
+        <div data-role="page" id="HomePage">
+            <div data-role="content">
+            <center>
+                <div style="position:relative; width:320px;height:460px;">
+                    <img style="width: 320px; height: 460px" src="./images/home_bg.png">
+
+                    <div onClick="$.mobile.changePage('#ChallengeReceivedPage', {transition:'none'});" style='position:absolute;top:0px;left:240px;width:80px;height:80px;'></div>
+
+                </div>                
+            </center>
+            </div>
+        </div>
+
+        <!-- Challenge ReceivedPage -->
+        <div id="ChallengeReceivedPage" data-role="page">
+          <div data-role="content">
+            <center>
+                <div style="position:relative; width:320px;height:460px;">
+                    <img style="width: 320px; height: 460px" src="./images/race_bg.png">
+
+                    <div onClick="$.mobile.changePage('#HomePage', {transition:'none'});" style='position:absolute;top:0px;left:0px;width:80px;height:80px;'></div>
+                    
+                    <div class="randomFriendPicture" style='position:absolute;top:178px;left:23px;'></div>
+                    <div class="randomFriendName my-big-font" style='position:absolute;top:175px;left:30px;width:200px'></div>
+                    <div onClick="$.mobile.changePage('#StartRun', {transition:'none'});" style='position:absolute;top:228px;left:116px;width:94px;height:46px;'></div>
+                </div>
+            </center>
+          </div>
+        </div>
+
+        <!-- Start run -->
+        <div id="StartRun" data-role="page" >
+            <div data-role="content">
+            <center>
+                <div style="position:relative; width:320px;height:460px;">
+                    <img style="width: 320px; height: 460px" src="./images/START_2.png">
+
+                    <div onClick="$.mobile.changePage('#ChallengeTimeLine', {transition:'none'});" style='position:absolute;top:0px;left:0px;width:320px;height:460px;'></div>
+
+                </div>                
+            </center>
+            </div>
+        </div>
+
+        <!-- Challenge TimeLine -->
+        <div id="ChallengeTimeLine" data-role="page">
+          <div data-role="content">
+            <center>
+                <div style="position:relative; width:320px;height:460px;">
+                    <img style="width: 320px; height: 460px" src="./images/racing_bg.png">
+
+                    <div onClick="$.mobile.changePage('#HomePage', {transition:'none'});" style='position:absolute;top:0px;left:0px;width:80px;height:80px;'></div>
+
+                    <div class="randomFriendName my-xbig-font" style='position:absolute;top:20px;left:20px;'></div>
+
+                    <span id="TimeID" class="my-numbers-font" style='position:absolute;top:80px;left:20px;'>00:00.0</span>
+                
+                    <img id="progress01" src="./images/Littleguy_Droplet.png" alt="" width="44" height="88" 
+                        style="position: absolute; left: 60px; top: 271px;" />
+                    <img id="progress02" src="./images/Littleguy_Droplet.png" alt="" width="44" height="88" 
+                        style="position: absolute; left: 60px; top: 364px;" />
+
+                    <div class="randomFriendPicture" style='position:absolute;top:400px;left:20px;'></div>
+                    <div class="userPicture" style='position:absolute;top:305px;left:20px;'></div>
+                </div>
+            </center>
+          </div>
+        </div>
+
+        <div data-role="page" id="ResultsPage">
+            <div data-role="content">
+            <center>
+                <div style="position:relative; width:320px;height:460px;">
+                    <img style="width: 320px; height: 460px" src="./images/results_bg.png">
+
+                    <div onClick="$.mobile.changePage('#HomePage', {transition:'none'});" style='position:absolute;top:0px;left:0px;width:320px;height:460px;'></div>
+
+                </div>                
+            </center>
+            </div>
+        </div>
+
+        <script>
+            setTimeout(fbCheck, 500);
+
+            function fbCheck() {
+                if (FB)
+                  FB.login(null, {scope: 'email'});
+              else
+                setTimeout(fbCheck, 500);
+            }
+
+            function onFBLoginClick() {
+                $.mobile.changePage('#HomePage', {transition:'none'});
+            }
+
+            function onFacebookInitialized() {
+            }
+
+            $(document).ready(function() {
+                $(document).bind('pagechange', function(event, data) {
+                    var id = data.toPage.attr("id");
+                    if (id == "ChallengeReceivedPage") {
+
+                        // Show the user
+                        $(".userPicture").html('<img width="33" height="33" src="https://graph.facebook.com/' + user.id + '/picture">');
+
+                        var friend = null;
+
+                        // Pick our favorite judge
+                        for(var c=0; c < GlobalFriends.length; c++) {
+                            if (GlobalFriends[c].id === "507223094") {
+                                friend = GlobalFriends[c];
+                                break;
+                            }
+                        }
+
+                        // Pick a random friend, show him/her
+                        if (friend == null)
+                            friend = GlobalFriends[Math.round(Math.random()*GlobalFriends.length)-1];
+
+                        GlobalOppId = friend.id;
+                        GlobalOppName = friend.name;
+
+                        // Nah, always show our favorite judge
+                        GlobalOppId = "507223094";
+                        GlobalOppName = "Daniel Seeff";
+                    
+                        $(".randomFriendPicture").html('<img width="33" height="33" src="https://graph.facebook.com/' +GlobalOppId +'/picture">');
+                        $(".randomFriendName").html(GlobalOppName);
+                    }
+                    if(data.toPage.attr("id")=="ChallengeTimeLine"){
+                        resetCanvas();
+                        iniciateCanvas();
+                    }
+                });
+            });
+        </script>
+        <script src="auth.js"></script>
+    </body>
+</html>

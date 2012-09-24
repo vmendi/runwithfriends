@@ -1,0 +1,13 @@
+body{
+	background: url(bgyo.png) repeat-x; width: 960px; height: 1808px; text-align: center; margin: auto;
+}
+
+#hack{
+	background: url(siteyo.png) no-repeat; width: 960px; height: 1808px; text-align: center; margin: auto;
+}
+
+.fb-like {
+	top:-1710px;
+	left:0px;
+	position: relative;
+}

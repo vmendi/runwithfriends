@@ -18,7 +18,7 @@ function daTimer() {
   if (secondsStr < 10)
     secondsStr = "0" + secondsStr
 
-  $("#TimeID").text("00:" + secondsStr + "." + currentTime.toString().substr(seconds.toString().lenght-2, 2));
+  $("#TimeID").text("00:" + secondsStr + "." + currentTime.toString().slice(-3,-1));
   
   setTimeout(daTimer, 33);
 }
